@@ -4,19 +4,69 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        app:fabSize="mini"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp" />
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp"
+        android:id="@+id/HL">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subject Name : "/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/subject_name"/>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/HL"
+        android:layout_margin="5dp"
+        android:id="@+id/HL1">
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:layout_weight="1"
+            android:id="@+id/add_btn"/>
+
+        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UPDATE"
+            android:layout_weight="1"
+        android:id="@+id/update_btn"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DELETE"
+            android:layout_weight="1"
+            android:id="@+id/delete_btn"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:layout_below="@+id/HL1"
+        android:choiceMode="singleChoice"
+        android:id="@+id/subjects_list"></ListView>
+
+
 </RelativeLayout>
