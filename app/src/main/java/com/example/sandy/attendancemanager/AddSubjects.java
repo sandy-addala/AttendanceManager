@@ -31,11 +31,15 @@ public class AddSubjects extends AppCompatActivity{
         setContentView(R.layout.subjects_activity);
 
 
+
         //INITIALIZING VARIABLES
         subNameTxt = (EditText) findViewById(R.id.subject_name);
         addBtn = (Button) findViewById(R.id.add_btn);
         updateBtn = (Button) findViewById(R.id.update_btn);
         deleteBtn = (Button) findViewById(R.id.delete_btn);
+
+        subjects.add("JAVA");
+        subjects.add("dbms");
 
         //SETTING THE ADAPTER
         subjectsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice, subjects);
@@ -88,11 +92,11 @@ public class AddSubjects extends AppCompatActivity{
             //TOAST MEASSAGE SO THAT THE USER CAN KNOW WHAT IS HAPPENING
             Toast.makeText(getApplicationContext(), "Added " + name, Toast.LENGTH_SHORT).show();
         }
-        else if(!subjects.contains(name)){
+        else if(subjects.contains(name)){
             Toast.makeText(getApplicationContext(), "The subject is already entered " + name, Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(getApplicationContext(), "Enter a subject to add" , Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Enter a subject to add" , Toast.LENGTH_SHORT).show();
         }
     }
     //METHOD FOR UPDATING THE SUBJECTS
@@ -100,7 +104,11 @@ public class AddSubjects extends AppCompatActivity{
         String name = subNameTxt.getText().toString().trim().toUpperCase();//TO GET THE NAME OF SELECTED SUBJECT
         int pos = lv.getCheckedItemPosition();//TO GET THE POSITION
 
-        if(!name.isEmpty() && name.length()>0 && !subjects.contains(name) ){
+        if(pos == -1){
+            Toast.makeText(getApplicationContext(), "Select something to update" , Toast.LENGTH_SHORT).show();
+        }
+
+        if(!name.isEmpty() && name.length()>0 && !subjects.contains(name) && pos > -1 ){
 
             subjectsAdapter.remove(subjects.get(pos));
             subjectsAdapter.insert(name, pos);
@@ -111,16 +119,20 @@ public class AddSubjects extends AppCompatActivity{
 
             Toast.makeText(getApplicationContext(), "Updated " + name, Toast.LENGTH_SHORT).show();
         }
-        else if(!subjects.contains(name)){
+        else if(subjects.contains(name)){
             Toast.makeText(getApplicationContext(), "The subject is already entered " + name, Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(getApplicationContext(), "Nothing to Update" , Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Nothing to Update" , Toast.LENGTH_SHORT).show();
         }
     }
     //AND FOR DELETING THE SUBJECTS
     private void deleteSubject(){
         int pos = lv.getCheckedItemPosition();
+
+        if(pos == -1){
+            Toast.makeText(getApplicationContext(), "Select something to delete" , Toast.LENGTH_SHORT).show();
+        }
 
         if(pos > -1){
             subjectsAdapter.remove(subjects.get(pos));
@@ -131,7 +143,7 @@ public class AddSubjects extends AppCompatActivity{
             Toast.makeText(getApplicationContext(), "Deleted ", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(getApplicationContext(), "Nothing to Delete" , Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Nothing to Delete" , Toast.LENGTH_SHORT).show();
         }
     }
 
