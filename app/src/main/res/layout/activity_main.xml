@@ -11,22 +11,12 @@
     tools:context="com.example.sandy.attendancemanager.MainActivity"
     android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter Your Name:"
-        android:id="@+id/textView" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:text=""
-        android:layout_weight="0.77" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter"
-        android:id="@+id/btnGo"/>
+        android:text="Your Subjects"
+        android:id="@+id/btn_subjects"/>
+
 </LinearLayout>
