@@ -44,12 +44,6 @@
             android:layout_weight="1"
             android:id="@+id/add_btn"/>
 
-        <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UPDATE"
-            android:layout_weight="1"
-        android:id="@+id/update_btn"/>
 
         <Button
             android:layout_width="wrap_content"
