@@ -10,8 +10,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.example.sandy.attendancemanager.data.SubjectsDbHelper;
 
+import java.util.ArrayList;
 /**
  * Created by sandy on 26-06-2017.
  */
@@ -19,11 +20,12 @@ import java.util.ArrayList;
 //FOR USER TO ADD HIS/HER SUBJECTS
 public class AddSubjects extends AppCompatActivity{
     //Declaring variables
-    ListView lv;
-    EditText subNameTxt;
-    Button addBtn , updateBtn, deleteBtn;
-    ArrayList<String> subjects = new ArrayList<String>();
-    ArrayAdapter<String> subjectsAdapter;
+    private ListView lv;
+    private EditText subNameTxt;
+    private Button addBtn , deleteBtn;
+    private ArrayList<String> subjects = new ArrayList<String>();
+    private ArrayAdapter<String> subjectsAdapter;
+    private SubjectsDbHelper mHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +37,10 @@ public class AddSubjects extends AppCompatActivity{
         //INITIALIZING VARIABLES
         subNameTxt = (EditText) findViewById(R.id.subject_name);
         addBtn = (Button) findViewById(R.id.add_btn);
-        updateBtn = (Button) findViewById(R.id.update_btn);
         deleteBtn = (Button) findViewById(R.id.delete_btn);
+        mHelper = new SubjectsDbHelper(this,null,null,1);
 
-        subjects.add("JAVA");
-        subjects.add("dbms");
+        subjects = mHelper.getSubjectsFromDb();
 
         //SETTING THE ADAPTER
         subjectsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice, subjects);
@@ -62,13 +63,7 @@ public class AddSubjects extends AppCompatActivity{
                 addSubject();
             }
         });
-        //UPDATING A SUBJECT
-        updateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateSubject();
-            }
-        });
+
         //DELETING A SUBJECT
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +79,7 @@ public class AddSubjects extends AppCompatActivity{
         String name = subNameTxt.getText().toString().trim().toUpperCase();
 
         if(!name.isEmpty() && name.length()>0 && !subjects.contains(name)){
+            mHelper.addSubjectToDb(name);
             subjectsAdapter.add(name);
             //REFRESHING THE VIEW
             subjectsAdapter.notifyDataSetChanged();
@@ -99,8 +95,10 @@ public class AddSubjects extends AppCompatActivity{
             Toast.makeText(getApplicationContext(), "Enter a subject to add" , Toast.LENGTH_SHORT).show();
         }
     }
+
+
     //METHOD FOR UPDATING THE SUBJECTS
-    private void updateSubject(){
+  /*  private void updateSubject(){
         String name = subNameTxt.getText().toString().trim().toUpperCase();//TO GET THE NAME OF SELECTED SUBJECT
         int pos = lv.getCheckedItemPosition();//TO GET THE POSITION
 
@@ -111,6 +109,8 @@ public class AddSubjects extends AppCompatActivity{
         if(!name.isEmpty() && name.length()>0 && !subjects.contains(name) && pos > -1 ){
 
             subjectsAdapter.remove(subjects.get(pos));
+
+            mHelper.updateSubjectInDb(name);
             subjectsAdapter.insert(name, pos);
             //REFRESHING
             subjectsAdapter.notifyDataSetChanged();
@@ -125,9 +125,12 @@ public class AddSubjects extends AppCompatActivity{
         else {
             Toast.makeText(getApplicationContext(), "Nothing to Update" , Toast.LENGTH_SHORT).show();
         }
-    }
+    } */
+
+
     //AND FOR DELETING THE SUBJECTS
     private void deleteSubject(){
+        String name = subNameTxt.getText().toString().trim().toUpperCase();
         int pos = lv.getCheckedItemPosition();
 
         if(pos == -1){
@@ -136,6 +139,7 @@ public class AddSubjects extends AppCompatActivity{
 
         if(pos > -1){
             subjectsAdapter.remove(subjects.get(pos));
+            mHelper.deleteSubjectInDb(name);
 
             subjectsAdapter.notifyDataSetChanged();
 
