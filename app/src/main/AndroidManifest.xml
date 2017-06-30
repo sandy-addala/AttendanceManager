@@ -18,8 +18,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddSubjects"
+            android:name=".SubjectsActivity"
             android:label="Your Subjects"
+            ></activity>
+        <activity
+            android:name=".TimeTableActivity"
+            android:label="Your TIme Table"
             ></activity>
     </application>
 

@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 
 //FOR USER TO ADD HIS/HER SUBJECTS
-public class AddSubjects extends AppCompatActivity{
+public class SubjectsActivity extends AppCompatActivity{
     //Declaring variables
     private ListView lv;
     private EditText subNameTxt;
@@ -30,7 +30,7 @@ public class AddSubjects extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.subjects_activity);
+        setContentView(R.layout.activity_subjects);
 
 
 
@@ -133,7 +133,7 @@ public class AddSubjects extends AppCompatActivity{
         String name = subNameTxt.getText().toString().trim().toUpperCase();
         int pos = lv.getCheckedItemPosition();
 
-        if(pos == -1){
+        if(pos == -1 || name.isEmpty() || name.length()== 0){
             Toast.makeText(getApplicationContext(), "Select something to delete" , Toast.LENGTH_SHORT).show();
         }
 
