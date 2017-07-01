@@ -94,11 +94,8 @@ public class Day4Fragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        if(which<=-1){
-                            Toast.makeText(getActivity(), "NO subject selected " + selectedSubject , Toast.LENGTH_SHORT).show();
-                        }
-
-                        else{
+                        int selectedPosition = ((AlertDialog)dialog).getListView().getCheckedItemPosition();
+                        if(selectedPosition >=0){
 
                             daySubs.addSubjectToDb(selectedSubject);
 
@@ -107,6 +104,9 @@ public class Day4Fragment extends Fragment {
                             dayAdapter.notifyDataSetChanged();
 
                             Toast.makeText(getActivity(), "Added " + selectedSubject , Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(getActivity(), "NO subject selected ", Toast.LENGTH_SHORT).show();
                         }
 
                     }
