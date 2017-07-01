@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:baselineAligned="false"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.sandy.attendancemanager.MainActivity"
-    android:weightSum="1">
-
+    android:weightSum="1"
+    tools:context="com.example.sandy.attendancemanager.MainActivity">
 
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your Subjects"
-        android:id="@+id/btn_subjects"/>
+        android:id="@+id/btn_subjects"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_weight="0.05"
+        android:background="@mipmap/sub"
+        android:visibility="visible"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Time table"
-        android:id="@+id/btn_TT"/>
+        android:id="@+id/btn_TT"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@mipmap/timetable"
+        android:visibility="visible" />
 
-</LinearLayout>
+</RelativeLayout>

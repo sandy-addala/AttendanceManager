@@ -136,7 +136,7 @@ public class SubjectsActivity extends AppCompatActivity{
         int pos = lv.getCheckedItemPosition();
 
         if(pos == -1 || name.isEmpty() || name.length()== 0){
-            Toast.makeText(getApplicationContext(), "Select something to delete" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Select a subject to delete" , Toast.LENGTH_SHORT).show();
         }
 
         else if(pos > -1){
