@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:id="@+id/HL1">
+        android:id="@+id/HL5">
 
 
         <Button
@@ -14,7 +15,7 @@
             android:layout_height="wrap_content"
             android:text="ADD"
             android:layout_weight="1"
-            android:id="@+id/day1_add_btn"/>
+            android:id="@+id/day5_add_btn"/>
 
 
         <Button
@@ -22,16 +23,26 @@
             android:layout_height="wrap_content"
             android:text="DELETE"
             android:layout_weight="1"
-            android:id="@+id/day1_delete_btn"/>
+            android:id="@+id/day5_delete_btn"/>
 
     </LinearLayout>
+
+
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
-        android:layout_below="@+id/HL1"
+        android:layout_below="@+id/HL5"
         android:choiceMode="singleChoice"
-        android:id="@+id/mon_list"></ListView>
+        android:id="@+id/day5_list"></ListView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:id="@+id/tv5"/>
+
+
 
 </LinearLayout>

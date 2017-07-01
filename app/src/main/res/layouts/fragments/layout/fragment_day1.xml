@@ -27,6 +27,8 @@
 
     </LinearLayout>
 
+
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -34,5 +36,13 @@
         android:layout_below="@+id/HL1"
         android:choiceMode="singleChoice"
         android:id="@+id/mon_list"></ListView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:id="@+id/tv1"/>
+
+
 
 </LinearLayout>

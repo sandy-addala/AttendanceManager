@@ -23,7 +23,7 @@
             ></activity>
         <activity
             android:name=".TimeTableActivity"
-            android:label="Your TIme Table"
+            android:label="Your Time Table"
             ></activity>
     </application>
 
