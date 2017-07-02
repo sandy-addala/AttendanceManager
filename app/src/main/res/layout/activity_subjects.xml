@@ -29,30 +29,35 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/HL1"
         android:layout_below="@+id/HL"
-        android:layout_margin="5dp"
-        android:id="@+id/HL1">
+        android:layout_alignRight="@+id/HL"
+        android:layout_alignEnd="@+id/HL">
 
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ADD"
+            android:id="@+id/add_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
             android:layout_weight="1"
-            android:id="@+id/add_btn"/>
+            android:background="@android:drawable/ic_input_add" />
 
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="DELETE"
+            android:id="@+id/delete_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:layout_weight="1"
-            android:id="@+id/delete_btn"/>
+            android:background="@android:drawable/ic_delete" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <ListView
         android:layout_width="wrap_content"
