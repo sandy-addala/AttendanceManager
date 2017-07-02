@@ -54,7 +54,7 @@ public class Day1Fragment extends Fragment {
         deleteBtn = (Button) view.findViewById(R.id.day1_delete_btn);
         allSubs = new SubjectsDbHelper(getActivity(),null,null,1);
         daySubs = new Day1DbHelper(getActivity(),null,null,1);
-        lv = (ListView) view.findViewById(R.id.mon_list);
+        lv = (ListView) view.findViewById(R.id.day1_list);
 
 
         subjects = allSubs.getSubjectsFromDb();
