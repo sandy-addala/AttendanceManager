@@ -4,12 +4,12 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:hardwareAccelerated="false"
-        android:largeHeap="true">
+        android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,12 +19,10 @@
         </activity>
         <activity
             android:name=".SubjectsActivity"
-            android:label="Your Subjects"
-            ></activity>
+            android:label="Your Subjects" />
         <activity
             android:name=".TimeTableActivity"
-            android:label="Your Time Table"
-            ></activity>
+            android:label="Your Time Table" />
     </application>
 
 </manifest>
