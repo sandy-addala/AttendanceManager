@@ -89,7 +89,7 @@ public class DetailsDbHelper extends SQLiteOpenHelper {
         float  more_less = 0;
         //75 will be replaced by user's criteria
         if(percent < 75 ){
-            more_less = (75*total+100*attended)/(100-75);// Should handlethe case where the user's target percentage is 100 LOL
+            more_less = (75*total-100*attended)/(100-75);// Should handlethe case where the user's target percentage is 100 LOL
             int temp = (int)(more_less+0.5);
             msg = "You should attend next "+temp+" calsses";
         }
@@ -161,7 +161,7 @@ public class DetailsDbHelper extends SQLiteOpenHelper {
 
         //75 will be replaced by user's criteria
         if(percent < 75 ){
-            more_less = (75*total+100*attended)/(100-75);// Should handle the case where the user's target percentage is 100 LOL
+            more_less = (75*total-100*attended)/(100-75);// Should handle the case where the user's target percentage is 100 LOL
             int temp = (int)(more_less+0.5);
             msg = "You should attend next "+temp+" calsses";
         }
