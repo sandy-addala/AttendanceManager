@@ -1,6 +1,7 @@
 package com.example.sandy.attendancemanager;
 
-import android.content.Context;
+import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,21 +17,46 @@ import java.util.ArrayList;
 //IGNORE THIS FILE
     //  MAY USE IT IN FUTURE
 
-public class SubjectAdapter extends ArrayAdapter<String> {
+public class SubjectAdapter extends ArrayAdapter<SubjectDetails> {
 
-    public SubjectAdapter( Context context, ArrayList subjects) {
-        super(context, R.layout.custom_subject_rows, subjects);
+    public SubjectAdapter(Activity context, ArrayList<SubjectDetails> subs){
+        super(context,0,subs);
+
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-        LayoutInflater subjectInflator = LayoutInflater.from(getContext());
-        View customView = subjectInflator.inflate(R.layout.custom_subject_rows,parent, false);
 
-        String sub = getItem(position);
-        TextView subText = (TextView) customView.findViewById(R.id.subView);
+        View listItemView = convertView;
+        if(listItemView == null) {
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.custom_subjects_list, parent, false);
+        }
 
-        subText.setText(sub);
-        return customView;
+        SubjectDetails currentSubject = getItem(position);
+
+        TextView subjectTextView = (TextView) listItemView.findViewById(R.id.subject_tv);
+        subjectTextView.setText(currentSubject.getSubjectName());
+
+        TextView totalTextView = (TextView) listItemView.findViewById(R.id.total_tv);
+        totalTextView.append(String.valueOf(currentSubject.getTotal()));
+
+        TextView attendedTextView = (TextView) listItemView.findViewById(R.id.attended_tv);
+        attendedTextView.append(String.valueOf(currentSubject.getAttended()));
+
+
+        String percent = currentSubject.getPercentage();
+        Float value = Float.parseFloat(percent);
+        TextView percentTextView = (TextView) listItemView.findViewById(R.id.percent_tv);
+        percentTextView.setText(String.valueOf(currentSubject.getPercentage()));
+        if(value < 75 ) percentTextView.setTextColor(Color.RED);
+        else percentTextView.setTextColor(Color.parseColor("#2E7D32"));
+        percentTextView.append("%");
+
+
+        TextView messageTextView = (TextView) listItemView.findViewById(R.id.message_tv);
+        messageTextView.setText(currentSubject.getMessage());
+
+        return listItemView;
+
     }
 
 

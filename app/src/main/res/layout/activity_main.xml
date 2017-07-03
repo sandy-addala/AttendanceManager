@@ -32,4 +32,12 @@
         android:layout_toRightOf="@+id/btn_subjects"
         android:background="@mipmap/tt" />
 
+    <Button
+        android:id="@+id/btn_details"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/btn_subjects"
+
+        android:text="details"/>
+
 </RelativeLayout>

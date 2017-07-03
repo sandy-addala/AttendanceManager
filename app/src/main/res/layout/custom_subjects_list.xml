@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp">
+
+    <TextView
+        android:id="@+id/subject_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="SUBJECT NAME"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/total_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="TOTAL : "
+        android:layout_below="@+id/subject_tv"
+        android:layout_alignLeft="@+id/subject_tv"
+        android:layout_alignStart="@+id/subject_tv" />
+
+    <TextView
+        android:id="@+id/attended_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ATTENDED : "
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/message_tv"
+        android:layout_toLeftOf="@+id/percent_tv"
+        android:layout_toStartOf="@+id/percent_tv"
+        android:layout_marginRight="31dp"
+        android:layout_marginEnd="31dp" />
+
+    <TextView
+        android:id="@+id/percent_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:text="PERCENT"
+        android:layout_alignTop="@+id/subject_tv"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/message_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/total_tv"
+        android:layout_alignStart="@+id/total_tv"
+        android:layout_below="@+id/total_tv"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="MESSAGE" />
+
+</RelativeLayout>

@@ -23,6 +23,9 @@
         <activity
             android:name=".TimeTableActivity"
             android:label="Your Time Table" />
+        <activity
+            android:name=".DetailsActivity"
+            android:label="Your Attendance" />
     </application>
 
 </manifest>
