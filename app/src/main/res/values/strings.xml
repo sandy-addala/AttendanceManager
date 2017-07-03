@@ -3,4 +3,13 @@
     <string name="text1">Subjects</string>
     <string name="text2">Timetable</string>
     <string name="text3">Details</string>
+    <string-array name="days_array">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>`
 </resources>

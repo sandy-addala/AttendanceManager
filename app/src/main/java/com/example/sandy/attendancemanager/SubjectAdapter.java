@@ -37,10 +37,10 @@ public class SubjectAdapter extends ArrayAdapter<SubjectDetails> {
         subjectTextView.setText(currentSubject.getSubjectName());
 
         TextView totalTextView = (TextView) listItemView.findViewById(R.id.total_tv);
-        totalTextView.append(String.valueOf(currentSubject.getTotal()));
+        totalTextView.setText("TOTAL : "+String.valueOf(currentSubject.getTotal()));
 
         TextView attendedTextView = (TextView) listItemView.findViewById(R.id.attended_tv);
-        attendedTextView.append(String.valueOf(currentSubject.getAttended()));
+        attendedTextView.setText("ATTENDED : "+String.valueOf(currentSubject.getAttended()));
 
 
         String percent = currentSubject.getPercentage();

@@ -38,7 +38,9 @@
         <activity
             android:name=".DetailsActivity"
             android:label="Your Attendance" />
-
+        <activity
+            android:name=".ManageAttendanceActivity"
+            android:label="Attendance Manager" />
 
     </application>
 
