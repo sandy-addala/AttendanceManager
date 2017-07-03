@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Attendance Manager</string>
+    <string name="text1">Subjects</string>
+    <string name="text2">Timetable</string>
+    <string name="text3">Details</string>
 </resources>
