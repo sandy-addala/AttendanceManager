@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    Button go_to_subjects, go_to_tt;
+    Button go_to_subjects, go_to_tt, go_to_details;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent =  new Intent(MainActivity.this,TimeTableActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        go_to_details = (Button) findViewById(R.id.btn_details);
+        go_to_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(MainActivity.this,DetailsActivity.class);
                 startActivity(intent);
             }
         });
