@@ -163,12 +163,12 @@ public class DetailsDbHelper extends SQLiteOpenHelper {
         if(percent < 75 ){
             more_less = (75*total-100*attended)/(100-75);// Should handle the case where the user's target percentage is 100 LOL
             int temp = (int)(more_less+0.5);
-            msg = "You should attend next "+temp+" calsses";
+            msg = "You should attend next "+temp+" classes";
         }
         else{
             more_less = (100*attended-75*total)/75;
             int temp = (int)(more_less);
-            msg = "You can skip next "+temp+" calsses";
+            msg = "You can skip next "+temp+" classes";
         }
         return msg;
     }
