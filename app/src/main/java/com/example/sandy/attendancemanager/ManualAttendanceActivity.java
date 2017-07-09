@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.example.sandy.attendancemanager.data.ManageDbHelper;
 import com.example.sandy.attendancemanager.data.SubjectsDbHelper;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class ManualAttendanceActivity  extends AppCompatActivity {
     private ArrayList<String> subjects = new ArrayList<String>();
     private ArrayAdapter<String> subjectsAdapter;
     private SubjectsDbHelper mHelper;
+    private ManageDbHelper mManageHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class ManualAttendanceActivity  extends AppCompatActivity {
         mHelper = new SubjectsDbHelper(this,null,null,1);
 
         subjects = mHelper.getSubjectsFromDb();
+        mManageHelper = new ManageDbHelper(this,null,null,1);
 
         subjectsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice, subjects);
         lv = (ListView) findViewById(R.id.subjects_list1);
@@ -58,19 +61,15 @@ public class ManualAttendanceActivity  extends AppCompatActivity {
                 }
 
                 if(mark=="present"){
-                   // mManageHelper.presentOn(time_table.get(day),day);
-                    Toast.makeText(getApplicationContext(),"present on"+selected_subjects, Toast.LENGTH_SHORT).show();
-                    //displayOverallAttendance();
+                    mManageHelper.presentOn(selected_subjects);
+                    Toast.makeText(getApplicationContext(),"present for"+selected_subjects, Toast.LENGTH_SHORT).show();
                 }
                 else if(mark=="absent"){
-                   // mManageHelper.absentOn(time_table.get(day),day);
-                    Toast.makeText(getApplicationContext(),"absent on"+selected_subjects, Toast.LENGTH_SHORT).show();
-                   // displayOverallAttendance();
+                    mManageHelper.absentOn(selected_subjects);
+                    Toast.makeText(getApplicationContext(),"absent for"+selected_subjects, Toast.LENGTH_SHORT).show();
                 }
                 else
-                    Toast.makeText(getApplicationContext(), "Select something asshole", Toast.LENGTH_SHORT).show();
-
-
+                    Toast.makeText(getApplicationContext(), "Select present or absent", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -89,7 +88,8 @@ public class ManualAttendanceActivity  extends AppCompatActivity {
                     mark = "absent";
                 break;
             default :
-                Toast.makeText(getApplicationContext(), "Seleect something asshole", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Select something asshole", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

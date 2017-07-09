@@ -63,6 +63,7 @@ public class ManageAttendanceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_attendance);
+        displayOverallAttendance();
 
         daySpinner = (Spinner) findViewById(spinner);
 
@@ -106,7 +107,7 @@ public class ManageAttendanceActivity extends AppCompatActivity {
 
         daySpinner.setAdapter(adapter);
 
-        displayOverallAttendance();
+
 
         add_attendance.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,17 +116,17 @@ public class ManageAttendanceActivity extends AppCompatActivity {
                 int day = daySpinner.getSelectedItemPosition();
 
                 if(mark=="present"){
-                    mManageHelper.presentOn(time_table.get(day),day);
-                    Toast.makeText(getApplicationContext(),"present on"+daySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                    mManageHelper.presentOn(time_table.get(day));
+                    Toast.makeText(getApplicationContext(),"present on "+daySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                     displayOverallAttendance();
                 }
                 else if(mark=="absent"){
-                    mManageHelper.absentOn(time_table.get(day),day);
-                    Toast.makeText(getApplicationContext(),"absent on"+daySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                    mManageHelper.absentOn(time_table.get(day));
+                    Toast.makeText(getApplicationContext(),"absent on "+daySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                     displayOverallAttendance();
                 }
                 else
-                    Toast.makeText(getApplicationContext(), "Select something asshole", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Select present or absent", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -144,8 +145,6 @@ public class ManageAttendanceActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
 
     }
     public void onRadioButtonClicked(View view) {
@@ -195,5 +194,12 @@ public class ManageAttendanceActivity extends AppCompatActivity {
         criteria_string = et_criteria.getText().toString();
         criteria = Integer.parseInt(criteria_string);
         return criteria;
+    }
+
+    @Override
+    public void onResume()
+    {  // After a pause OR at startup
+        super.onResume();
+        displayOverallAttendance();
     }
 }
