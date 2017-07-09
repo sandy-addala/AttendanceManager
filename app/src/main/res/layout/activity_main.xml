@@ -48,7 +48,7 @@
         <ImageButton
             android:id="@+id/btn_manage"
             android:layout_width="match_parent"
-            android:src="@mipmap/predictor"
+            android:src="@mipmap/calendar"
             android:scaleType="fitXY"
             android:paddingTop="40dp"
             android:paddingBottom="40dp"
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:scaleType="fitXY"
             android:padding="40dp"
-            android:src="@mipmap/calendar"
+            android:src="@mipmap/predictor"
             android:layout_height="150dp"
             android:layout_weight="1"
             android:background="#00bcd4"

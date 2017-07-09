@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:padding="16dp"
+        android:background="#EFEBE9"
         android:id="@+id/jk">
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" ADD ATTENDANCE ON"
-            android:layout_weight="1"/>
+            android:text=" ADD ATTENDANCE ON : "
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:textSize="17sp" />
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            />
 
     </LinearLayout>
 
@@ -30,6 +33,109 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=" this will fucking change "
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:visibility="gone"/>
 
-</RelativeLayout>
+    <RadioGroup
+        android:background="#EFEBE9"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/RadioButton"
+        android:padding="16dp"
+        android:orientation="horizontal">
+        <RadioButton android:id="@+id/present"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:text="ALL PRESENT"
+            android:onClick="onRadioButtonClicked"/>
+        <RadioButton android:id="@+id/absent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ALL ABSENT"
+            android:layout_marginLeft="16dp"
+            android:onClick="onRadioButtonClicked"/>
+    </RadioGroup>
+
+    <TextView
+        android:background="#EFEBE9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:text="*If the classes atteneded differ from the classes in the time table choose add manually button or edit attendance button"/>
+
+    <Button
+
+        android:id="@+id/add_attendance_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OK" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relative_view">
+
+        <TextView
+            android:id="@+id/overall_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="OVERALL"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/total_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="TOTAL : "
+            android:layout_below="@+id/overall_tv"
+            android:layout_alignLeft="@+id/overall_tv"
+            android:layout_alignStart="@+id/overall_tv" />
+
+        <TextView
+            android:id="@+id/attended_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ATTENDED : "
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/message_tv1"
+            android:layout_toLeftOf="@+id/percent_tv1"
+            android:layout_toStartOf="@+id/percent_tv1"
+            android:layout_marginRight="31dp"
+            android:layout_marginEnd="31dp" />
+
+        <TextView
+            android:id="@+id/percent_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:text="PERCENT"
+            android:layout_alignTop="@+id/overall_tv"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/message_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/total_tv1"
+            android:layout_alignStart="@+id/total_tv1"
+            android:layout_below="@+id/total_tv1"
+            android:layout_marginTop="10dp"
+            android:textStyle="italic"
+            android:layout_marginBottom="10dp"
+            android:text="MESSAGE" />
+
+    </RelativeLayout>
+
+</LinearLayout>
