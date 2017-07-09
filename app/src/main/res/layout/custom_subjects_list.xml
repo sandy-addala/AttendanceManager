@@ -48,9 +48,9 @@
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:text="PERCENT"
-        android:layout_alignTop="@+id/subject_tv"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/attended_tv" />
 
     <TextView
         android:id="@+id/message_tv"

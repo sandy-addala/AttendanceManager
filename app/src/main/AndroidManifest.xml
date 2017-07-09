@@ -42,6 +42,12 @@
         <activity
             android:name=".ManageAttendanceActivity"
             android:label="Attendance Manager" />
+        <activity
+            android:name=".ManualAttendanceActivity"
+            android:label="Attendance Manager" />
+        <activity
+            android:name=".EditAttendanceActivity"
+            android:label="Attendance Manager" />
 
     </application>
 
