@@ -1,11 +1,13 @@
 package com.example.sandy.attendancemanager;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -24,6 +26,8 @@ import com.example.sandy.attendancemanager.data.ManageDbHelper;
 
 import java.util.ArrayList;
 
+import static com.example.sandy.attendancemanager.R.id.spinner;
+
 /**
  * Created by sandy on 03-07-2017.
  */
@@ -31,11 +35,13 @@ import java.util.ArrayList;
 public class ManageAttendanceActivity extends AppCompatActivity {
 
     private Spinner daySpinner;
-    private String mark;
     private TextView total;
     private TextView attended;
     private TextView percent;
     private TextView msg;
+    private EditText et_criteria;
+    private Button add_manually;
+    private Button edit_attendance;
     private DetailsDbHelper mDetailHelper;
     private Day1DbHelper dh1;
     private Day2DbHelper dh2;
@@ -49,18 +55,24 @@ public class ManageAttendanceActivity extends AppCompatActivity {
     private RelativeLayout rl;
     private ArrayList<String> subjects = new ArrayList<String>();
     private ArrayList<Object> time_table = new ArrayList<>();
-    TextView nigga;
+    private String mark;
+    private String criteria_string;
+    private int criteria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_attendance);
 
-        daySpinner = (Spinner) findViewById(R.id.spinner);
-
-        nigga = (TextView) findViewById(R.id.tdew);
+        daySpinner = (Spinner) findViewById(spinner);
 
         add_attendance = (Button) findViewById(R.id.add_attendance_btn);
+
+        add_manually = (Button) findViewById(R.id.add_manually);
+
+        edit_attendance = (Button) findViewById(R.id.edit_attendance);
+
+
 
         mManageHelper = new ManageDbHelper(this,null,null,1);
         dh1 = new Day1DbHelper(this,null,null,1);
@@ -104,16 +116,32 @@ public class ManageAttendanceActivity extends AppCompatActivity {
 
                 if(mark=="present"){
                     mManageHelper.presentOn(time_table.get(day),day);
-                    Toast.makeText(getApplicationContext(),"", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"present on"+daySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                     displayOverallAttendance();
                 }
                 else if(mark=="absent"){
                     mManageHelper.absentOn(time_table.get(day),day);
-                    Toast.makeText(getApplicationContext(),"hey", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"absent on"+daySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                     displayOverallAttendance();
                 }
                 else
                     Toast.makeText(getApplicationContext(), "Select something asshole", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        add_manually.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(ManageAttendanceActivity.this,ManualAttendanceActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        edit_attendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(ManageAttendanceActivity.this,EditAttendanceActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -153,12 +181,19 @@ public class ManageAttendanceActivity extends AppCompatActivity {
         attended.setText("ATTENDED : "+String.valueOf(mDetailHelper.getOverallAttendedClasses()));
         percent.setText(mDetailHelper.getOverallPercentage());
         msg.setText(mDetailHelper.getOverallMoreorLess());
-
         String p = mDetailHelper.getOverallPercentage();
         Float value = Float.parseFloat(p);
-        if(value < 75 ) rl.setBackgroundColor(Color.parseColor("#EF9A9A"));
+        int c = getCriteria();
+        if(value < c ) rl.setBackgroundColor(Color.parseColor("#EF9A9A"));
         else rl.setBackgroundColor(Color.parseColor("#C5E1A5"));
         percent.append("%");
 
+    }
+
+    public int getCriteria(){
+        et_criteria = (EditText) findViewById(R.id.criteria);
+        criteria_string = et_criteria.getText().toString();
+        criteria = Integer.parseInt(criteria_string);
+        return criteria;
     }
 }
