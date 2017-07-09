@@ -1,22 +1,54 @@
 package com.example.sandy.attendancemanager;
 
-import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.sandy.attendancemanager.data.Day1DbHelper;
+import com.example.sandy.attendancemanager.data.Day2DbHelper;
+import com.example.sandy.attendancemanager.data.Day3DbHelper;
+import com.example.sandy.attendancemanager.data.Day4DbHelper;
+import com.example.sandy.attendancemanager.data.Day5DbHelper;
+import com.example.sandy.attendancemanager.data.Day6DbHelper;
+import com.example.sandy.attendancemanager.data.Day7DbHelper;
+import com.example.sandy.attendancemanager.data.DetailsDbHelper;
+import com.example.sandy.attendancemanager.data.ManageDbHelper;
+
+import java.util.ArrayList;
 
 /**
  * Created by sandy on 03-07-2017.
  */
 
-public class ManageAttendanceActivity extends Activity implements OnItemSelectedListener {
+public class ManageAttendanceActivity extends AppCompatActivity {
 
     private Spinner daySpinner;
-    private String daySelected;
+    private String mark;
+    private TextView total;
+    private TextView attended;
+    private TextView percent;
+    private TextView msg;
+    private DetailsDbHelper mDetailHelper;
+    private Day1DbHelper dh1;
+    private Day2DbHelper dh2;
+    private Day3DbHelper dh3;
+    private Day4DbHelper dh4;
+    private Day5DbHelper dh5;
+    private Day6DbHelper dh6;
+    private Day7DbHelper dh7;
+    private ManageDbHelper mManageHelper;
+    private Button add_attendance;
+    private RelativeLayout rl;
+    private ArrayList<String> subjects = new ArrayList<String>();
+    private ArrayList<Object> time_table = new ArrayList<>();
     TextView nigga;
 
     @Override
@@ -28,6 +60,33 @@ public class ManageAttendanceActivity extends Activity implements OnItemSelected
 
         nigga = (TextView) findViewById(R.id.tdew);
 
+        add_attendance = (Button) findViewById(R.id.add_attendance_btn);
+
+        mManageHelper = new ManageDbHelper(this,null,null,1);
+        dh1 = new Day1DbHelper(this,null,null,1);
+        subjects = dh1.getSubjectsFromDb();
+        time_table.add(subjects);
+        dh2 = new Day2DbHelper(this,null,null,1);
+        subjects = dh2.getSubjectsFromDb();
+        time_table.add(subjects);
+        dh3 = new Day3DbHelper(this,null,null,1);
+        subjects = dh3.getSubjectsFromDb();
+        time_table.add(subjects);
+        dh4 = new Day4DbHelper(this,null,null,1);
+        subjects = dh4.getSubjectsFromDb();
+        time_table.add(subjects);
+        dh5 = new Day5DbHelper(this,null,null,1);
+        subjects = dh5.getSubjectsFromDb();
+        time_table.add(subjects);;
+        dh6 = new Day6DbHelper(this,null,null,1);
+        subjects = dh6.getSubjectsFromDb();
+        time_table.add(subjects);
+        dh7 = new Day7DbHelper(this,null,null,1);
+        subjects = dh7.getSubjectsFromDb();
+        time_table.add(subjects);
+
+
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.days_array, android.R.layout.simple_spinner_item);
 
@@ -35,20 +94,71 @@ public class ManageAttendanceActivity extends Activity implements OnItemSelected
 
         daySpinner.setAdapter(adapter);
 
-        daySelected = daySpinner.getSelectedItem().toString();
+        displayOverallAttendance();
 
-        nigga.setText(daySelected);
+        add_attendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int day = daySpinner.getSelectedItemPosition();
+
+                if(mark=="present"){
+                    mManageHelper.presentOn(time_table.get(day),day);
+                    Toast.makeText(getApplicationContext(),"", Toast.LENGTH_SHORT).show();
+                    displayOverallAttendance();
+                }
+                else if(mark=="absent"){
+                    mManageHelper.absentOn(time_table.get(day),day);
+                    Toast.makeText(getApplicationContext(),"hey", Toast.LENGTH_SHORT).show();
+                    displayOverallAttendance();
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Select something asshole", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
 
     }
+    public void onRadioButtonClicked(View view) {
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        boolean checked = ((RadioButton) view).isChecked();
 
+        switch (view.getId()) {
+            case R.id.present:
+                if (checked)
+                    mark = "present";
+                break;
+            case R.id.absent:
+                if (checked)
+                    mark = "absent";
+                break;
+            default :
+                Toast.makeText(getApplicationContext(), "Seleect something asshole", Toast.LENGTH_SHORT).show();
+        }
+        displayOverallAttendance();
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        nigga.setText(daySelected);
+    public void displayOverallAttendance(){
+
+        mDetailHelper = new DetailsDbHelper(this,null,null,1);
+
+        rl = (RelativeLayout) findViewById(R.id.relative_view);
+        total = (TextView) findViewById(R.id.total_tv1);
+        attended = (TextView) findViewById(R.id.attended_tv1);
+        percent = (TextView) findViewById(R.id.percent_tv1);
+        msg = (TextView) findViewById(R.id.message_tv1);
+
+        total.setText("TOTAL : "+String.valueOf(mDetailHelper.getOverallTotalClasses()));
+        attended.setText("ATTENDED : "+String.valueOf(mDetailHelper.getOverallAttendedClasses()));
+        percent.setText(mDetailHelper.getOverallPercentage());
+        msg.setText(mDetailHelper.getOverallMoreorLess());
+
+        String p = mDetailHelper.getOverallPercentage();
+        Float value = Float.parseFloat(p);
+        if(value < 75 ) rl.setBackgroundColor(Color.parseColor("#EF9A9A"));
+        else rl.setBackgroundColor(Color.parseColor("#C5E1A5"));
+        percent.append("%");
+
     }
 }
