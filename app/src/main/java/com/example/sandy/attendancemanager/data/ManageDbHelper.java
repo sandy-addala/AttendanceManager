@@ -28,7 +28,7 @@ public class ManageDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
 
 
-    public void presentOn(Object o, int day) {
+    public void presentOn(Object o) {
         ArrayList<String> subs = (ArrayList<String>) o;
         SQLiteDatabase db = getWritableDatabase();
         for(int i=0;i<subs.size();i++){
@@ -45,7 +45,7 @@ public class ManageDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void absentOn(Object o, int day) {
+    public void absentOn(Object o) {
         ArrayList<String> subs = (ArrayList<String>) o;
         SQLiteDatabase db = getWritableDatabase();
         for(int i=0;i<subs.size();i++){
@@ -56,5 +56,17 @@ public class ManageDbHelper extends SQLiteOpenHelper {
                     + " WHERE "+ SubjectsEntry.COLUMN_SUBJECT_NAME + "=\"" + subs.get(i) +"\";" );
 
         }
+        db.close();
+    }
+
+    public void editAttendanceof(String s, int tot, int att) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE " + SubjectsEntry.TABLE_NAME + " SET "
+                + SubjectsEntry.COLUMN_TOTAL_CLASSES + " = "
+                + tot + " WHERE "+ SubjectsEntry.COLUMN_SUBJECT_NAME + "=\"" + s +"\";" );
+        db.execSQL("UPDATE " + SubjectsEntry.TABLE_NAME + " SET "
+                + SubjectsEntry.COLUMN_PRESENT_CLASSES + " = "
+                + att + " WHERE "+ SubjectsEntry.COLUMN_SUBJECT_NAME + "=\"" + s +"\";" );
+        db.close();
     }
 }
